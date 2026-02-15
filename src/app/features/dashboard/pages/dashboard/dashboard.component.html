@@ -1,0 +1,153 @@
+<!--!Font Awesome Pro v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2026 Fonticons, Inc.-->
+<!-- Dashboard Page -->
+<div>
+  <!-- Header -->
+  <app-header 
+    [title]="'Dashboard'" 
+    [userName]="userName"
+    [userInitials]="userInitials">
+  </app-header>
+
+  <!-- Content Area -->
+  <div class="p-8 bg-gray-50">
+    <!-- Stats Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <!-- Next Pickup Date Card -->
+      <div class="card bg-white shadow-sm hover:shadow-md transition-shadow">
+        <div class="card-body p-6">
+          <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h2 class="text-2xl font-bold text-dark-gray mb-1">Feb 10, 2026</h2>
+          <p class="text-sm text-medium-gray">Next Pickup Date</p>
+        </div>
+      </div>
+
+      <!-- Pending Reports Card -->
+      <div class="card bg-white shadow-sm hover:shadow-md transition-shadow">
+        <div class="card-body p-6">
+          <div class="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+          </div>
+          <h2 class="text-2xl font-bold text-dark-gray mb-1">3</h2>
+          <p class="text-sm text-medium-gray">Pending Reports</p>
+        </div>
+      </div>
+
+      <!-- Total Pickups Card -->
+      <div class="card bg-white shadow-sm hover:shadow-md transition-shadow">
+        <div class="card-body p-6">
+          <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h2 class="text-2xl font-bold text-dark-gray mb-1">24</h2>
+          <p class="text-sm text-medium-gray">Total Pickups Completed</p>
+        </div>
+      </div>
+
+      <!-- Outstanding Payment Card -->
+      <div class="card bg-white shadow-sm hover:shadow-md transition-shadow">
+        <div class="card-body p-6">
+          <div class="w-12 h-12 bg-pink-50 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h2 class="text-2xl font-bold text-dark-gray mb-1">$45.00</h2>
+          <p class="text-sm text-medium-gray">Outstanding Payment</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="card bg-white shadow-sm">
+      <div class="card-body p-6">
+        <h2 class="text-xl font-bold text-dark-gray mb-6">Recent Activity</h2>
+        
+        <div class="space-y-4">
+          <!-- Activity Item 1 -->
+          <div class="flex items-start justify-between py-4 border-b border-gray-100 last:border-0">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-emerald-50 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-dark-gray text-sm mb-1">Pickup</h3>
+                <p class="text-sm text-medium-gray">Waste pickup completed successfully</p>
+              </div>
+            </div>
+            <div class="text-right flex-shrink-0 ml-4">
+              <p class="text-xs text-gray-400">Feb 3, 2026</p>
+              <p class="text-xs text-gray-400">10:30 AM</p>
+            </div>
+          </div>
+
+          <!-- Activity Item 2 -->
+          <div class="flex items-start justify-between py-4 border-b border-gray-100 last:border-0">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-amber-50 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-dark-gray text-sm mb-1">Payment</h3>
+                <p class="text-sm text-medium-gray">Payment of $45.00 received</p>
+              </div>
+            </div>
+            <div class="text-right flex-shrink-0 ml-4">
+              <p class="text-xs text-gray-400">Feb 1, 2026</p>
+              <p class="text-xs text-gray-400">2:15 PM</p>
+            </div>
+          </div>
+
+          <!-- Activity Item 3 -->
+          <div class="flex items-start justify-between py-4 border-b border-gray-100 last:border-0">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-dark-gray text-sm mb-1">Report</h3>
+                <p class="text-sm text-medium-gray">Bin overflow reported on Main St.</p>
+              </div>
+            </div>
+            <div class="text-right flex-shrink-0 ml-4">
+              <p class="text-xs text-gray-400">Jan 28, 2026</p>
+              <p class="text-xs text-gray-400">9:00 AM</p>
+            </div>
+          </div>
+
+          <!-- Activity Item 4 -->
+          <div class="flex items-start justify-between py-4">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-emerald-50 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-dark-gray text-sm mb-1">Pickup</h3>
+                <p class="text-sm text-medium-gray">Scheduled pickup for Feb 10, 2026</p>
+              </div>
+            </div>
+            <div class="text-right flex-shrink-0 ml-4">
+              <p class="text-xs text-gray-400">Jan 27, 2026</p>
+              <p class="text-xs text-gray-400">11:45 AM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

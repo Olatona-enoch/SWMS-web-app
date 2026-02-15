@@ -1,0 +1,59 @@
+<!-- <div class="flex justify-between items-center">
+    <div>
+        <h1 class="text-pageheader text-dark-grey font-semibold "> Dashboard</h1>
+        <p class="text-sm">welcome back, <span class="font-semibold text-[#2ECC71]">john doe</span></p>
+    </div>
+    <div class="flex items-center gap-3">
+        <div class="btn btn-circle btn-outline">
+            <svg class="h-6 w-6 fill-dark-grey" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M320 64C306.7 64 296 74.7 296 88L296 97.7C214.6 109.3 152 179.4 152 264L152 278.5C152 316.2 142 353.2 123 385.8L101.1 423.2C97.8 429 96 435.5 96 442.2C96 463.1 112.9 480 133.8 480L506.2 480C527.1 480 544 463.1 544 442.2C544 435.5 542.2 428.9 538.9 423.2L517 385.7C498 353.1 488 316.1 488 278.4L488 263.9C488 179.3 425.4 109.2 344 97.6L344 87.9C344 74.6 333.3 63.9 320 63.9zM488.4 432L151.5 432L164.4 409.9C187.7 370 200 324.6 200 278.5L200 264C200 197.7 253.7 144 320 144C386.3 144 440 197.7 440 264L440 278.5C440 324.7 452.3 370 475.5 409.9L488.4 432zM252.1 528C262 556 288.7 576 320 576C351.3 576 378 556 387.9 528L252.1 528z"/></svg>
+        </div>
+        <div class="btn btn-outline h-full p-3 rounded-[40px] flex flex-col justify-center items-center">
+            <div class="flex justify-center items-center gap-3">
+
+                <div class="bg-[#2ECC71] text-sm font-semibold text-white flex justify-center items-center rounded-full w-[35.24px] h-[35.24px]"> JD</div>
+                <div class="text-sm font-medium text-dark-grey"> John doe </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="p-6 bg-gray-200">
+    <div class=""></div>
+</div> -->
+
+<header class="shadow-sm">
+  <div class="px-8 py-6 flex items-center justify-between">
+    <div>
+      <h1 class="text-pageheader text-dark-gray font-semibold ">{{ title }}</h1>
+      <p class="text-sm text-medium-gray mt-1"> welcome back, <span class="font-semibold text-[#2ECC71]">{{ userName }}</span></p>
+    </div>
+    <div class="flex items-center gap-4">
+      <!-- Notifications -->
+      <!-- <button class="relative p-2 hover:bg-gray-50 rounded-lg transition-colors">
+        <svg class="w-6 h-6 text-medium-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+        </svg>
+        <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
+      </button> -->
+      <button class="relative p-2.5 border border-gray-200 rounded-[40px] hover:bg-gray-50 transition-colors">
+        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+        </svg>
+        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+      </button>
+      <!-- User Avatar -->
+      <!-- <div class="flex items-center gap-3 btn btn-outline rounded-[40px] outline-blue-400">
+        <div class="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+          {{ userInitials }}
+        </div>
+        <span class="font-medium text-dark-gray text-sm">{{ userName }}</span>
+      </div> -->
+      <button class="flex items-center gap-3 px-4 py-2 border border-gray-200 rounded-[40px] hover:bg-gray-50 transition-colors">
+        <div class="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+          {{ userInitials }}
+        </div>
+        <span class="font-medium text-dark-gray text-sm">{{ userName }}</span>
+      </button>
+    </div>
+  </div>
+</header>

@@ -1,3 +1,17 @@
-<h1 class="text-3xl font-bold text-red-600 underline">
-  Hello world!
-</h1>
+<!-- <div class="font-poppins">
+  <div class="flex justify-around items-center">
+    <div class="w-[18%]"> sidebar </div>
+    <div class="w-full"> 
+      <app-dashboard></app-dashboard>
+    </div>
+  </div>
+</div> -->
+<div class="flex min-h-screen font-poppins">
+  <!-- Sidebar persists across all routes -->
+  <app-sidebar></app-sidebar>
+  
+  <!-- Main content area where routed components render -->
+  <main class="flex-1 overflow-auto">
+    <router-outlet></router-outlet>
+  </main>
+</div>

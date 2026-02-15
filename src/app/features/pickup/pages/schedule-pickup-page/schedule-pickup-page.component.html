@@ -1,0 +1,183 @@
+<div>
+  <app-header 
+    [title]="'Schedule Pickup'" 
+    [subtitle]="'Schedule your next waste collection'"
+    [userName]="'John Doe'"
+    [userInitials]="'JD'">
+  </app-header>
+
+  <div class="p-8 bg-gray-50">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <div class="lg:col-span-2">
+        <div class="card bg-base-100 shadow-md rounded-xl">
+          <div class="card-body p-6">
+            <h2 class="text-lg font-semibold text-dark-gray mb-6">Schedule a Pickup</h2>
+            
+            <form [formGroup]="pickupForm" (ngSubmit)="onSubmit()">
+              <div class="space-y-5">
+                
+                <div>
+                  <label for="location" class="block text-sm font-medium text-dark-gray mb-2">
+                    Location
+                  </label>
+                  <input
+                    type="text"
+                    id="location"
+                    formControlName="location"
+                    class="input input-bordered w-full rounded-lg"
+                    [class.input-error]="isFieldInvalid('location')"
+                    placeholder="Select or enter pickup location">
+                  <div *ngIf="isFieldInvalid('location')" class="text-error text-xs mt-1">
+                    Location is required
+                  </div>
+                </div>
+
+                <div>
+                  <label for="binType" class="block text-sm font-medium text-dark-gray mb-2">
+                    Bin Type
+                  </label>
+                  <select 
+                    id="binType"
+                    formControlName="binType"
+                    class="select select-bordered w-full rounded-lg "
+                    [class]="pickupForm.get('binType')?.value ? 'text-base-content' : 'text-base-content/40'"
+                    [class.select-error]="isFieldInvalid('binType')"
+                   >
+                    <option value="" disabled selected>Select bin type</option>
+                    <option value="general">General Waste</option>
+                    <option value="recyclable">Recyclable</option>
+                    <option value="organic">Organic Waste</option>
+                    <option value="hazardous">Hazardous Waste</option>
+                  </select>
+                  <div *ngIf="isFieldInvalid('binType')" class="text-error text-xs mt-1">
+                    Bin type is required
+                  </div>
+                </div>
+
+                <div>
+                  <label for="pickupDate" class="block text-sm font-medium text-dark-gray mb-2">
+                    Preferred Pickup Date
+                  </label>
+                  <input
+                    type="date"
+                    id="pickupDate"
+                    formControlName="pickupDate"
+                    class="input input-bordered w-full rounded-lg"
+                    [class]="pickupForm.get('pickupDate')?.value ? 'text-base-content' : 'text-base-content/40'"
+                    [class.input-error]="isFieldInvalid('pickupDate')"
+                    >
+                  <div *ngIf="isFieldInvalid('pickupDate')" class="text-error text-xs mt-1">
+                    Pickup date is required
+                  </div>
+                </div>
+
+                <div>
+                  <label for="timeSlot" class="block text-sm font-medium text-dark-gray mb-2">
+                    Preferred Time Slot
+                  </label>
+                  <select 
+                    id="timeSlot"
+                    formControlName="timeSlot"
+                    class="select select-bordered w-full rounded-lg"
+                    [class]="pickupForm.get('timeSlot')?.value ? 'text-base-content' : 'text-base-content/40'"
+                    [class.select-error]="isFieldInvalid('timeSlot')"
+                    >
+                    <option value="" disabled selected>Select time slot</option>
+                    <option value="morning">Morning (8:00 AM - 11:00 AM)</option>
+                    <option value="afternoon">Afternoon (12:00 PM - 3:00 PM)</option>
+                    <option value="evening">Evening (4:00 PM - 7:00 PM)</option>
+                  </select>
+                  <div *ngIf="isFieldInvalid('timeSlot')" class="text-error text-xs mt-1">
+                    Time slot is required
+                  </div>
+                </div>
+
+                <div>
+                  <label for="notes" class="block text-sm font-medium text-dark-gray mb-2">
+                    Additional Notes (Optional)
+                  </label>
+                  <textarea
+                    id="notes"
+                    formControlName="notes"
+                    rows="3"
+                    class="textarea textarea-bordered w-full rounded-lg resize-none"
+                    placeholder="Add any special instructions"></textarea>
+                </div>
+
+              </div>
+
+              <div class="mt-6 space-y-3">
+                <button 
+                  type="submit"
+                  [disabled]="pickupForm.invalid"
+                  class="btn bg-custom-green shadow-md hover:bg-emerald-600 text-white border-none w-full rounded-xl">
+                  Schedule Pickup
+                </button>
+                <button 
+                  type="button"
+                  (click)="onCancel()"
+                  class="pt-2 text-sm font-semibold w-full  text-medium-gray hover:text-custom-red">
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-1">
+        <div class="card bg-base-100 shadow-md rounded-xl mb-6">
+          <div class="card-body p-6">
+            <h3 class="text-lg font-semibold text-dark-gray mb-4">Next Scheduled Pickup</h3>
+            
+            <div class="bg-[#E8F8F0] rounded-xl p-6">
+              <div class="flex justify-center mb-6">
+                <div class="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center">
+                  <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="text-center space-y-4">
+                <div>
+                  <p class="text-sm text-dark-gray/70 mb-1">Date</p>
+                  <p class="text-sm font-semibold text-dark-gray">February 10, 2026</p>
+                </div>
+                
+                <div>
+                  <p class="text-sm text-dark-gray/70 mb-1">Time</p>
+                  <p class="text-sm font-semibold text-dark-gray">Morning (8am-11am)</p>
+                </div>
+                
+                <div>
+                  <p class="text-sm text-dark-gray/70 mb-1">Location</p>
+                  <p class="text-sm font-semibold text-dark-gray">123 Main Street</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-amber-50 border-l-4 border-amber-400 rounded-xl p-5 shadow-sm">
+          <div class="flex gap-3">
+            <div class="flex-shrink-0">
+              <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <div>
+              
+              <p class="text-sm text-medium-gray">
+                <span class=" font-bold text-dark-gray ">Reminder:</span>
+                Please ensure your bins are placed at the designated location before 8:00 AM on the pickup day.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
