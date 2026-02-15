@@ -1,0 +1,185 @@
+<div>
+  <app-header 
+    [title]="'Report Bin'" 
+    [subtitle]="'Report issues with waste bins for quick resolution'"
+    [userName]="'John Doe'"
+    [userInitials]="'JD'">
+  </app-header>
+
+  <div class="p-8 bg-gray-100">
+    <div class="max-w-3xl">
+      <div class="card bg-base-100 shadow-md rounded-xl">
+        <div class="card-body p-6">
+          <h2 class="text-xl font-semibold text-dark-gray mb-1">Report a Waste Bin</h2>
+          <p class="text-sm text-medium-gray mb-6">Report a full, damaged, or missing bin for quick action.</p>
+          
+          <form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+            <div class="space-y-5">
+              
+              <!-- Bin ID + QR Button Row -->
+              <div>
+                <label for="binId" class="block text-sm font-medium text-dark-gray mb-2">
+                  Bin ID or QR Code
+                </label>
+                <div class="flex flex-col sm:flex-row gap-3">
+                  <div class="flex-1">
+                    <div class="relative">
+                      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                      </div>
+                      <input
+                        type="text"
+                        id="binId"
+                        formControlName="binId"
+                        class="input input-bordered w-full pl-10 rounded-lg"
+                        [class.input-error]="isFieldInvalid('binId')"
+                        placeholder="Enter bin ID">
+                    </div>
+                    <div *ngIf="isFieldInvalid('binId')" class="text-error text-sm mt-1">
+                      <span *ngIf="reportForm.get('binId')?.hasError('required')">This field is required.</span>
+                      <span *ngIf="reportForm.get('binId')?.hasError('minlength')">Bin ID must be at least 3 characters.</span>
+                    </div>
+                  </div>
+                  <button 
+                    type="button"
+                    (click)="onScanQR()"
+                    class="btn btn-outline rounded-lg px-6 flex items-center gap-2 sm:w-auto w-full">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path>
+                    </svg>
+                    <span>Scan QR</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Issue Type -->
+              <div>
+                <label for="issueType" class="block text-sm font-medium text-dark-gray mb-2">
+                  Issue Type
+                </label>
+                <div class="relative">
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                  </div>
+                  <select 
+                    id="issueType"
+                    formControlName="issueType"
+                    class="select select-bordered w-full pl-10 rounded-lg text-dark-gray/40"
+                    [class.select-error]="isFieldInvalid('issueType')"
+                    [class.text-dark-gray]="reportForm.get('issueType')?.value">
+                    <option value="" disabled selected class="text-dark-gray/40">Select issue type</option>
+                    <option value="full" class="text-dark-gray">Bin is Full</option>
+                    <option value="damaged" class="text-dark-gray">Bin is Damaged</option>
+                    <option value="missing" class="text-dark-gray">Bin is Missing</option>
+                    <option value="overflow" class="text-dark-gray">Bin Overflow</option>
+                    <option value="other" class="text-dark-gray">Other Issue</option>
+                  </select>
+                </div>
+                <div *ngIf="isFieldInvalid('issueType')" class="text-error text-sm mt-1">
+                  This field is required.
+                </div>
+              </div>
+
+              <!-- Location -->
+              <div>
+                <label for="location" class="block text-sm font-medium text-dark-gray mb-2">
+                  Location
+                </label>
+                <div class="relative">
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                  </div>
+                  <input
+                    type="text"
+                    id="location"
+                    formControlName="location"
+                    class="input input-bordered w-full pl-10 rounded-lg"
+                    [class.input-error]="isFieldInvalid('location')"
+                    placeholder="Enter or confirm bin location">
+                </div>
+                <div *ngIf="isFieldInvalid('location')" class="text-error text-sm mt-1">
+                  This field is required.
+                </div>
+              </div>
+
+              <!-- Upload Photo -->
+              <div>
+                <label class="block text-sm font-medium text-dark-gray mb-2">
+                  Upload Photo (Optional)
+                </label>
+                <div 
+                  class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-emerald-400 transition-colors cursor-pointer"
+                  (click)="fileInput.click()"
+                  (dragover)="onDragOver($event)"
+                  (drop)="onDrop($event)">
+                  <div class="flex flex-col items-center gap-3">
+                    <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                      <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <p class="text-sm font-medium text-dark-gray mb-1">
+                        {{ selectedFileName || 'Upload a photo of the bin' }}
+                      </p>
+                      <p class="text-xs text-dark-gray/60">Drag and drop or click to browse</p>
+                    </div>
+                  </div>
+                  <input 
+                    #fileInput
+                    type="file"
+                    class="hidden"
+                    accept="image/*"
+                    (change)="onFileSelected($event)">
+                </div>
+              </div>
+
+              <!-- Additional Notes -->
+              <div>
+                <label for="notes" class="block text-sm font-medium text-dark-gray mb-2">
+                  Additional Notes (Optional)
+                </label>
+                <textarea
+                  id="notes"
+                  formControlName="notes"
+                  rows="3"
+                  class="textarea textarea-bordered w-full rounded-lg resize-none"
+                  [class.textarea-error]="isFieldInvalid('notes')"
+                  placeholder="Add more details about the issue"></textarea>
+                <div *ngIf="isFieldInvalid('notes')" class="text-error text-sm mt-1">
+                  <span *ngIf="reportForm.get('notes')?.hasError('maxlength')">
+                    Notes cannot exceed 500 characters.
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="mt-6 space-y-3">
+              <button 
+                type="submit"
+                [disabled]="reportForm.invalid"
+                class="btn bg-custom-green hover:bg-emerald-600 text-white border-none w-full rounded-xl">
+                Submit Report
+              </button>
+              <button 
+                type="button"
+                (click)="onCancel()"
+                class="pt-2 text-sm font-semibold w-full text-medium-gray hover:text-custom-red">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

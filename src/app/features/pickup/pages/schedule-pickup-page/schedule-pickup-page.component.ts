@@ -13,11 +13,21 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 export class SchedulePickupPageComponent implements OnInit {
 
   pickupForm!: FormGroup;
+  minDate!: string;
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.initForm();
+    this.setMinDate();
+  }
+  //to get todays date in the right format and set it as the min date for a pickup
+  private setMinDate(): void {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    this.minDate = `${year}-${month}-${day}`;
   }
 
   private initForm(): void {

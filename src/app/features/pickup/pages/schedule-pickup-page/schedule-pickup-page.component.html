@@ -6,13 +6,13 @@
     [userInitials]="'JD'">
   </app-header>
 
-  <div class="p-8 bg-gray-50">
+  <div class="p-8 bg-gray-100">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
       
       <div class="lg:col-span-2">
         <div class="card bg-base-100 shadow-md rounded-xl">
           <div class="card-body p-6">
-            <h2 class="text-lg font-semibold text-dark-gray mb-6">Schedule a Pickup</h2>
+            <h2 class="text-xl font-semibold text-dark-gray mb-6">Schedule a Pickup</h2>
             
             <form [formGroup]="pickupForm" (ngSubmit)="onSubmit()">
               <div class="space-y-5">
@@ -63,6 +63,7 @@
                     type="date"
                     id="pickupDate"
                     formControlName="pickupDate"
+                    [min]="minDate"
                     class="input input-bordered w-full rounded-lg"
                     [class]="pickupForm.get('pickupDate')?.value ? 'text-base-content' : 'text-base-content/40'"
                     [class.input-error]="isFieldInvalid('pickupDate')"
@@ -84,9 +85,9 @@
                     [class.select-error]="isFieldInvalid('timeSlot')"
                     >
                     <option value="" disabled selected>Select time slot</option>
-                    <option value="morning">Morning (8:00 AM - 11:00 AM)</option>
-                    <option value="afternoon">Afternoon (12:00 PM - 3:00 PM)</option>
-                    <option value="evening">Evening (4:00 PM - 7:00 PM)</option>
+                    <option value="Morning (8:00 AM - 11:00 AM)">Morning (8:00 AM - 11:00 AM)</option>
+                    <option value="Afternoon (12:00 PM - 3:00 PM)">Afternoon (12:00 PM - 3:00 PM)</option>
+                    <option value="Evening (4:00 PM - 7:00 PM)">Evening (4:00 PM - 7:00 PM)</option>
                   </select>
                   <div *ngIf="isFieldInvalid('timeSlot')" class="text-error text-xs mt-1">
                     Time slot is required
@@ -143,17 +144,17 @@
               <div class="text-center space-y-4">
                 <div>
                   <p class="text-sm text-dark-gray/70 mb-1">Date</p>
-                  <p class="text-sm font-semibold text-dark-gray">February 10, 2026</p>
+                  <p class="text-sm font-semibold text-dark-gray"> {{ pickupForm.get('pickupDate')?.value ? (pickupForm.get('pickupDate')?.value | date:'MMMM d, yyyy') : 'February 10, 2026' }}</p>
                 </div>
                 
                 <div>
                   <p class="text-sm text-dark-gray/70 mb-1">Time</p>
-                  <p class="text-sm font-semibold text-dark-gray">Morning (8am-11am)</p>
+                  <p class="text-sm font-semibold text-dark-gray">{{pickupForm.get('timeSlot')?.value || 'Morning (8:00 AM - 11:00 AM)' }}</p>
                 </div>
                 
                 <div>
                   <p class="text-sm text-dark-gray/70 mb-1">Location</p>
-                  <p class="text-sm font-semibold text-dark-gray">123 Main Street</p>
+                  <p class="text-sm font-semibold text-dark-gray">{{ pickupForm.get('location')?.value || '123 Main Street' }}</p>
                 </div>
               </div>
             </div>
