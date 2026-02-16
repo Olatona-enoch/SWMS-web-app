@@ -3,13 +3,17 @@ import { DashboardComponent } from './features/dashboard/pages/dashboard/dashboa
 import { SchedulePickupPageComponent } from './features/pickup/pages/schedule-pickup-page/schedule-pickup-page.component';
 import { ReportBinComponent } from './features/bin-reports/pages/report-bin/report-bin.component';
 import { MakePaymentComponent } from './features/payments/pages/make-payment/make-payment.component';
+import { SettingsComponent } from './features/settings/pages/settings/settings.component';
+import { NotificationsComponent } from './features/notifications/pages/notifications/notifications.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/schedule-pickup', pathMatch: 'full' },
     { path: 'dashboard', component: DashboardComponent },
     { path: 'schedule-pickup', component: SchedulePickupPageComponent },
     { path: 'report-bin', component: ReportBinComponent },
-    { path: 'payments', component: MakePaymentComponent }
+    { path: 'payments', component: MakePaymentComponent },
+    { path: 'settings', component: SettingsComponent },
+    { path: 'notifications', component: NotificationsComponent }
 
 
 

@@ -1,0 +1,111 @@
+<div>
+  <app-header 
+    [title]="'Notifications'" 
+    [subtitle]="'Your updates and alerts'"
+    [userName]="'John Doe'"
+    [userInitials]="'JD'">
+  </app-header>
+
+  <div class="p-8 bg-gray-100">
+    <div class="max-w-5xl mx-auto">
+      
+      <!-- Notifications Card -->
+      <div class="card bg-base-100 shadow-md rounded-xl">
+        <div class="card-body p-6">
+          
+          <!-- Header with Mark All as Read -->
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl font-semibold text-dark-gray">All Notifications</h2>
+            <button 
+              (click)="markAllAsRead()"
+              class="btn btn-ghost btn-sm text-custom-green hover:text-emerald-600 hover:bg-emerald-50">
+              Mark all as read
+            </button>
+          </div>
+
+          <!-- Notifications List -->
+          <div class="space-y-4">
+            
+            <div 
+              *ngFor="let notification of notifications"
+              class="flex items-start justify-between p-4 rounded-lg transition-colors"
+              [class.bg-light-emerald]="!notification.read"
+              [class.hover:bg-gray-50]="notification.read"
+              [class.hover:bg-emerald-100]="!notification.read">
+              
+              <!-- Left Side: Icon + Content -->
+              <div class="flex items-start gap-4 flex-1">
+                
+                <!-- Icon Container with Unread Dot -->
+                <div class="relative flex-shrink-0">
+                  <div 
+                    class="w-10 h-10 rounded-full flex items-center justify-center"
+                    [ngClass]="{
+                      'bg-emerald-100': notification.type === 'success',
+                      'bg-amber-100': notification.type === 'warning',
+                      'bg-blue-100': notification.type === 'info',
+                      'bg-cyan-100': notification.type === 'primary'
+                    }">
+                    
+                    <!-- Success Icon (Checkmark) -->
+                    <svg *ngIf="notification.type === 'success'" class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    
+                    <!-- Warning Icon (Clock/Alert) -->
+                    <svg *ngIf="notification.type === 'warning'" class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    
+                    <!-- Info Icon -->
+                    <svg *ngIf="notification.type === 'info'" class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    
+                    <!-- Primary Icon (Truck/Dollar) -->
+                    <svg *ngIf="notification.type === 'primary' && notification.title.includes('Pickup')" class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+                    </svg>
+                    
+                    <svg *ngIf="notification.type === 'primary' && notification.title.includes('Payment')" class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                  </div>
+                  
+                  <!-- Unread Indicator Dot -->
+                  <span 
+                    *ngIf="!notification.read"
+                    class="absolute top-0 right-0 w-3 h-3 bg-custom-green rounded-full border-2 border-white">
+                  </span>
+                </div>
+
+                <!-- Content -->
+                <div class="flex-1 min-w-0">
+                  <h3 
+                    class="text-sm text-dark-gray mb-1"
+                    [class.font-semibold]="!notification.read"
+                    [class.font-medium]="notification.read">
+                    {{ notification.title }}
+                  </h3>
+                  <p class="text-sm text-medium-gray">
+                    {{ notification.description }}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Right Side: Timestamp -->
+              <div class="flex-shrink-0 ml-4">
+                <span class="text-xs text-light-gray whitespace-nowrap">
+                  {{ notification.time }}
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
