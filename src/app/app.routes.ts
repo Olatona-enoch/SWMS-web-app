@@ -5,15 +5,21 @@ import { ReportBinComponent } from './features/bin-reports/pages/report-bin/repo
 import { MakePaymentComponent } from './features/payments/pages/make-payment/make-payment.component';
 import { SettingsComponent } from './features/settings/pages/settings/settings.component';
 import { NotificationsComponent } from './features/notifications/pages/notifications/notifications.component';
+import { RegisterComponent } from './features/auth/pages/register/register.component';
+import { LoginComponent } from './features/auth/pages/login/login.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/schedule-pickup', pathMatch: 'full' },
+    { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     { path: 'dashboard', component: DashboardComponent },
     { path: 'schedule-pickup', component: SchedulePickupPageComponent },
     { path: 'report-bin', component: ReportBinComponent },
     { path: 'payments', component: MakePaymentComponent },
     { path: 'settings', component: SettingsComponent },
-    { path: 'notifications', component: NotificationsComponent }
+    { path: 'notifications', component: NotificationsComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'login', component: LoginComponent },
+
+
 
 
 
